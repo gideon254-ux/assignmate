@@ -17,8 +17,8 @@ export interface Assignment {
   description: string | null
   subject: string
   dueDate: Date
-  priority: 'low' | 'medium' | 'high'
-  status: 'pending' | 'in_progress' | 'completed' | 'overdue'
+  priority: string
+  status: string
   userId: string
   createdAt: Date
   updatedAt: Date
