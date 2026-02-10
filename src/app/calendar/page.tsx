@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/database'
 import { Header } from '@/components/layout/Header'
 import { Card } from '@/components/common/Card'
@@ -31,7 +30,7 @@ export default async function CalendarPage({
 }: {
   searchParams: { month?: string; year?: string }
 }) {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (!session) {
     redirect('/api/auth/signin')

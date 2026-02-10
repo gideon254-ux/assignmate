@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/database'
 import { Header } from '@/components/layout/Header'
 import { AssignmentsList } from '@/components/features/assignments/AssignmentsList'
@@ -14,7 +13,7 @@ async function getAssignments(userId: string) {
 }
 
 export default async function AssignmentsPage() {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (!session) {
     redirect('/api/auth/signin')
