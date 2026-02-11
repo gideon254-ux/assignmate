@@ -66,5 +66,6 @@ export const {
   },
   pages: {
     signIn: '/login',
+    error: '/api/auth/error',
   },
 })
