@@ -39,18 +39,22 @@ function LoginForm() {
     setError('')
 
     try {
+      // When redirect: true, NextAuth handles redirect automatically on success
+      // On error, it returns an object with error property
       const result = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
-        redirect: true,
+        redirect: false,
         callbackUrl: '/dashboard',
       })
 
       if (result?.error) {
         setError('Invalid email or password')
         setIsLoading(false)
+      } else if (result?.ok) {
+        // Successful login - redirect manually
+        window.location.href = '/dashboard'
       }
-      // If successful, NextAuth will handle the redirect automatically
     } catch (err) {
       console.error('Login error:', err)
       setError('An error occurred. Please try again.')
