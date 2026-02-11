@@ -10,10 +10,7 @@ const credentialsSchema = z.object({
   password: z.string().min(6),
 })
 
-export const {
-  handlers: { GET, POST },
-  auth,
-} = NextAuth({
+const authConfig = NextAuth({
   secret: "M+lB+F9W4BF0X0aETvXtUZlWvpjH+nLdZqiGretaf+A=",
   trustHost: true,
   adapter: PrismaAdapter(prisma) as any,
@@ -75,3 +72,8 @@ export const {
     error: '/api/auth/error',
   },
 })
+
+export const handlers = authConfig.handlers
+export const auth = authConfig.auth
+export const signIn = authConfig.signIn
+export const signOut = authConfig.signOut
