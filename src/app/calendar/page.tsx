@@ -33,7 +33,7 @@ export default async function CalendarPage({
   const session = await auth()
 
   if (!session) {
-    redirect('/api/auth/signin')
+    redirect('/login')
   }
 
   const currentMonth = searchParams.month

@@ -16,7 +16,7 @@ export default async function AssignmentsPage() {
   const session = await auth()
 
   if (!session) {
-    redirect('/api/auth/signin')
+    redirect('/login')
   }
 
   const assignments = await getAssignments(session.user.id)
