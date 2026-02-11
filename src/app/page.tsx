@@ -39,7 +39,7 @@ export default function HomePage() {
             {APP_DESCRIPTION}. Manage your academic workload efficiently and never miss a deadline again.
           </p>
           <div className="mt-10 flex justify-center gap-4">
-            <Link href="/api/auth/signin">
+            <Link href="/register">
               <Button size="lg">Get Started</Button>
             </Link>
             <Link href="#features">
@@ -84,7 +84,7 @@ export default function HomePage() {
             Join thousands of students who use {APP_NAME} to stay organized and achieve their academic goals.
           </p>
           <div className="mt-8">
-            <Link href="/api/auth/signin">
+            <Link href="/register">
               <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
                 Sign Up Now
               </Button>
