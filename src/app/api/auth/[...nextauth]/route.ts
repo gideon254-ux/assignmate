@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import { prisma } from './database'
+import { prisma } from '@/lib/database'
 
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET || "M+lB+F9W4BF0X0aETvXtUZlWvpjH+nLdZqiGretaf+A=",
