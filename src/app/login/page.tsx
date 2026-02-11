@@ -42,18 +42,18 @@ function LoginForm() {
       const result = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
-        redirect: false,
+        redirect: true,
+        callbackUrl: '/dashboard',
       })
 
       if (result?.error) {
         setError('Invalid email or password')
-      } else {
-        router.push('/dashboard')
-        router.refresh()
+        setIsLoading(false)
       }
-    } catch {
+      // If successful, NextAuth will handle the redirect automatically
+    } catch (err) {
+      console.error('Login error:', err)
       setError('An error occurred. Please try again.')
-    } finally {
       setIsLoading(false)
     }
   }
