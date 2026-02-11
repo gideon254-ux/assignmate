@@ -14,6 +14,7 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
+  secret: "M+lB+F9W4BF0X0aETvXtUZlWvpjH+nLdZqiGretaf+A=",
   adapter: PrismaAdapter(prisma) as any,
   providers: [
     Credentials({
