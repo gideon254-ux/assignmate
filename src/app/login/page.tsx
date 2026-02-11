@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/common/Button'
 import { Card } from '@/components/common/Card'
@@ -11,12 +11,27 @@ import { APP_NAME } from '@/utils/constants'
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = React.useState(false)
   const [error, setError] = React.useState('')
   const [formData, setFormData] = React.useState({
     email: '',
     password: '',
   })
+
+  // Check for error in URL
+  React.useEffect(() => {
+    const errorParam = searchParams.get('error')
+    if (errorParam) {
+      const errorMessages: Record<string, string> = {
+        'Configuration': 'There is a problem with the server configuration.',
+        'AccessDenied': 'Access denied. You do not have permission to sign in.',
+        'Verification': 'The verification token has expired or is invalid.',
+        'Default': 'An error occurred during authentication. Please try again.',
+      }
+      setError(errorMessages[errorParam] || errorMessages['Default'])
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
